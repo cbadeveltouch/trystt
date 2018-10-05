@@ -1,4 +1,16 @@
+####### TRYSTT project #####################
+
 ############################################
+
+GOALS:
+
+Progetto creato per sperimentare la funzionalità di speech recognition, utili
+alla creazione semplificata di un diario in cartella socio sanitaria mobile.
+Inoltre il prototipo sarà utile anche alla sperimentazione sull'utilizzo dei
+comandi vocali, mirata al miglioramento dell'esperienza utente.
+
+############################################
+
 Speech Recognition Requirements
 --------------------------------------------
     To use the Voice Recognition API you will need a Cordova Plugin that handles the native code of the Speech Recognizer. In this case, we are going to use the cordova-plugin-speechrecognition plugin. This plugin allows you to use the native Speech Recognition from your device easily.
@@ -15,3 +27,4 @@ Speech Recognition Requirements
     Internet Connection (obviously)
 
 ###############################################
+
