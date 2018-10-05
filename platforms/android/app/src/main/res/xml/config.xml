@@ -4,10 +4,17 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="SpeechRecognition">
+        <param name="android-package" value="com.pbakondy.SpeechRecognition" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
     <name>TryStt</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
+    <icon src="res/icon/android/icon-48-mdpi.png" />
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
@@ -21,7 +28,4 @@
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
-    <feature name="SpeechRecognition">
-        <param name="android-package" value="com.pbakondy.SpeechRecognition" />
-    </feature>
 </widget>

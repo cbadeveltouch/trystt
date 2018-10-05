@@ -33,14 +33,28 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Hello World</title>
+        <title>Trying Speech recognition</title>
     </head>
     <body>
         <div class="app">
-            <h1>Apache Cordova</h1>
+            <img src="img/logo.png" height="100px" width="100px" style="margin-bottom: 10px;">
+            <h1>Speech recognition</h1>
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+                <!--<p class="event received" style="display: none;">Device is Ready</p>-->
+                <a href="#" id="start-speech" class="speechbutton" style="display: block;">Hi guys!<br>Premi per registrare!!</a>
+                <a href="#" id="stop-speech" class="speechbutton" style="display: none;">Registrazione in corso..</a>
+            </div>
+            <div id="result-text" style="   width: 100%;
+                                            height: 110px;
+                                            background-color: ghostwhite;
+                                            margin-top: 15px;
+                                            -moz-border-radius:6px;
+                                            -webkit-border-radius:6px;
+                                            border-radius:6px;
+                                            padding: 5px;
+                                            align-content: center;">
+                ..oppure "Dettami il testo"
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>

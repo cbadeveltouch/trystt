@@ -28,16 +28,88 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+
+
+        let startBtn = document.getElementById('start-speech'),
+            stopBtn = document.getElementById('stop-speech'),
+            bodyMessageText = document.getElementById('result-text')
+
+        /**
+         * Implemento metodi per speech recognition
+         */
+        // Handle results
+        startRecognition = () => {
+            window.plugins.speechRecognition.startListening( result => {
+                // Show results
+                stopBtn.style.display = 'none'
+                startBtn.style.display = 'block'
+                bodyMessageText.innerText = result.length > 0 ? result[0] : ''
+            }, err => {
+                console.error(err)
+            }, {
+                language: "it-IT",
+                matches: 1,
+                showPopup: false
+            })
+        }
+
+        // Verify if recognition is available
+        verifyAndSpeech = () => window.plugins.speechRecognition.isRecognitionAvailable( available => {
+            if (!available) {
+                console.log("Sorry, not available")
+            }
+
+            // Check if has permission to use the microphone
+            window.plugins.speechRecognition.hasPermission( isGranted => {
+                if (isGranted) {
+                    navigator.notification.beep(1)
+                    startRecognition()
+                } else {
+                    // Request the permission
+                    window.plugins.speechRecognition.requestPermission( () => {
+                        navigator.notification.beep(1)
+                        // Request accepted, start recognition
+                        startRecognition()
+                    }, err => {
+                        console.log(err)
+                    })
+                }
+            }, err => {
+                console.log(err)
+            })
+        }, err => {
+            console.log(err)
+        })
+
+
+        
+        
+        startBtn.onclick = () => {
+            startBtn.style.display = 'none'
+            stopBtn.style.display = 'block'
+            verifyAndSpeech()
+        }
+
+        stopBtn.onclick = () => {
+            window.plugins.speechRecognition.stopListening( () => {
+                // No more recognition
+            }, err => {
+                console.log(err)
+            })
+            stopBtn.style.display = 'none'
+            startBtn.style.display = 'block'
+        }
+
     },
 
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+        //var receivedElement = parentElement.querySelector('.received');
 
         listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+        //receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
     }
