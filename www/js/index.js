@@ -29,6 +29,37 @@ var app = {
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
 
+        const artyom = new Artyom()
+
+        startContinuousArtyom = () => {
+            artyom.fatality()   // use this to stop any of
+        
+            setTimeout( () => {// if you use artyom.fatality , wait 250 ms to initialize again.
+                artyom.initialize({
+                    lang:"it-IT",// A lot of languages are supported. Read the docs !
+                    continuous:false,// Artyom will listen forever
+                    listen:true, // Start recognizing
+                    debug:true, // Show everything in the console
+                    speed:1 // talk normally
+                })
+                .then(() => {
+                    alert("Artyom pronto in modalità continua!")
+                })
+                .catch( err => alert(err))
+            }, 250)
+        }
+
+        startContinuousArtyom()
+
+        artyom.addCommands([
+            {
+                indexes: ["Ciao"],
+                action: () => {
+                    alert("Hello, how are you?");
+                }
+            }
+        ])
+
 
         let startBtn = document.getElementById('start-speech'),
             stopBtn = document.getElementById('stop-speech'),
@@ -99,6 +130,25 @@ var app = {
             stopBtn.style.display = 'none'
             startBtn.style.display = 'block'
         }
+
+        /**
+         * TERMINE SPEECH RECOGNITION
+         */
+
+
+        /* setTimeout( () => {
+            artyom.say("Buongiorno, bentornato in casa di riposo. Cosa vuoi fare?",{
+                onStart:function(){
+                    alert("The text is being readed");
+                },
+                onEnd:function(){
+                    alert("Well, that was all. Try with a longer text !");
+                }
+            })
+        }, 2000) */
+               
+
+
 
     },
 
