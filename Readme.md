@@ -1,4 +1,6 @@
-#Speech Recognition Requirements
+############################################
+Speech Recognition Requirements
+--------------------------------------------
     To use the Voice Recognition API you will need a Cordova Plugin that handles the native code of the Speech Recognizer. In this case, we are going to use the cordova-plugin-speechrecognition plugin. This plugin allows you to use the native Speech Recognition from your device easily.
 
     This plugin supports the Android and iOS platforms. To install the plugin in your project, execute the following command in the terminal:
@@ -12,3 +14,4 @@
     RECORD_AUDIO permission
     Internet Connection (obviously)
 
+###############################################
