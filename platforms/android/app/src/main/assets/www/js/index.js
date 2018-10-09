@@ -29,12 +29,21 @@ var app = {
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
 
-        const artyom = new Artyom()
+        /* const artyom = new Artyom()
+
+        artyom.addCommands([
+            {
+                indexes: ["Ottobre"],
+                action: () => {
+                    alert("Hello, how are you?");
+                }
+            }
+        ])
 
         startContinuousArtyom = () => {
             artyom.fatality()   // use this to stop any of
-        
-            setTimeout( () => {// if you use artyom.fatality , wait 250 ms to initialize again.
+
+            setTimeout( () => {// if you use artyom.fatality , wait 250 ms to initialize again.                
                 artyom.initialize({
                     lang:"it-IT",// A lot of languages are supported. Read the docs !
                     continuous:false,// Artyom will listen forever
@@ -49,16 +58,8 @@ var app = {
             }, 250)
         }
 
-        startContinuousArtyom()
+        startContinuousArtyom() */
 
-        artyom.addCommands([
-            {
-                indexes: ["Ciao"],
-                action: () => {
-                    alert("Hello, how are you?");
-                }
-            }
-        ])
 
 
         let startBtn = document.getElementById('start-speech'),
@@ -148,7 +149,23 @@ var app = {
         }, 2000) */
                
 
+        let speechPage = document.getElementById('speech-page'),
+            speechPageBtn = document.getElementById('speech-page-btn'),
+            keypadPage = document.getElementById('keypad-page'),
+            keypadPageBtn = document.getElementById('keypad-page-btn')
 
+        speechPageBtn.onclick = () => {
+            keypadPage.style.display = 'none'
+            speechPage.style.display = 'block'
+        }
+
+        keypadPageBtn.onclick = () => {
+            speechPage.style.display = 'none'
+            keypadPage.style.display = 'block'
+            resize()
+        }
+
+        initKeypadNumerals()
 
     },
 

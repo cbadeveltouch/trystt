@@ -24,17 +24,7 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
+    background-color:#fdfdfd;
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
@@ -47,27 +37,9 @@ body {
 
 /* Portrait layout (default) */
 .app {
-    /*background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
-    position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top: 40%;
-    /*top:10%;*/
-    height: 50px;                   /* text area height */
-    width: 225px;                   /* text area width */
-    text-align:center;
-    padding: 5px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
-}
-
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    .app {
-        background-position:left center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
-        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
-                                      /* offset horizontal: half of image width and text area width */
-    }
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
 }
 
 h1 {
@@ -139,3 +111,155 @@ h1 {
 	position:relative;
 	top:1px;
 }
+
+.tab-buttons {
+    background-color: ghostwhite;
+    font-size: 14px;
+    color: orangered;
+    margin: 5px 8px;
+    border-bottom: 2px solid orangered;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 5px 50px;
+    width: calc(100%);
+    border-radius: 5px;
+}
+
+.tab-buttons:active {
+    filter: brightness(110%);
+    border: 1px solid orangered;
+}
+
+
+/**
+* Classi keypad
+*/
+.buttons-kp {
+    display: flex;
+    font-family: Helvetica;
+    font-weight: 400;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 0 auto;
+    width: 270px;
+}
+
+.button-kp {
+    border-bottom: 3px solid #0D47A1;
+    border-top: 1px solid #b2cde4;
+    border-radius: 35px;
+    color: #0D47A1;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 26px;
+    height: 80px;
+    line-height: 80px;
+    margin: 5px;
+    text-align: center;
+    width: 80px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.button-kp:active {
+    background-color: #1565C0;
+    color: #FFFFFF;
+}
+
+.button-kp-del {
+    background: url(../img/delete.svg) no-repeat center center;
+    background-size: 40% auto;
+    color: transparent;
+}
+
+.button-kp-del:active {
+    background: #1565C0 url(../img/delete-white.svg) no-repeat center center;
+    background-size: 40% auto;
+    color: transparent;
+}
+
+#app #display {
+	text-align: center;
+	font-size: 4rem;
+	line-height: 4rem;
+	padding: 0 0 10px 0;
+}
+
+#app #display #numerals {
+	font-weight: regular;
+	position: relative;
+	z-index: 20;
+	line-height: 4rem;
+	height: 4rem;
+	display: block;
+}
+
+#app #display #numerals .numeral {
+	position: relative;
+	opacity: 0;
+	top: -20px;
+	transition: top 100ms linear, opacity 150ms linear;
+}
+
+#app #display #numerals .displayed {
+	opacity: 1;
+	top: 0px;
+}
+
+#app #display #numerals .hide {
+	opacity: 0;
+	top: 25px;
+}
+
+#app #display #numerals .decplayed {
+	position: relative;
+	font-size: .45em;
+	opacity: 0;
+	top: -1em;
+	color: rgba(255, 255, 255, 0.4);
+	padding: 0 0 0 1px;
+	transition: top 100ms linear, opacity 150ms linear;
+}
+
+#app #display #numerals .decimal {
+	position: relative;
+	font-size: .45em;
+	top: -.8em;
+	color: rgba(255, 255, 255, 0.4);
+	padding: 0 0 0 1px;
+	transition: top 100ms linear, opacity 150ms linear;
+}
+
+#app #display #numerals .smalldisplayed {
+	position: relative;
+	font-size: .45em;
+	top: -.8em;
+	color: #ffffff;
+	opacity: 1;
+	padding: 0 0 0 1px;
+}
+
+#app #display #numerals .smallhide {
+	opacity: 0;
+	top: -.6em;
+}
+
+#app #display #numerals:before {
+	content: '$';
+	position: relative;
+	font-size: .4em;
+	top: -.95em;
+	margin: 0 3px 0 0;
+}
+
+.jiggle{
+    animation-duration: 100ms;
+    animation-name: jiggler;
+}
+
+@keyframes jiggler {
+    0% { left: 0px; }
+    33% { left: 5px; }
+    66% { left: -5px; }
+    100% { left: 0px; }
+}
+

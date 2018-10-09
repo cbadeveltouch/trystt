@@ -29,7 +29,11 @@ Speech Recognition Requirements
 
     Once the plugin is installed in your project, the window.plugins.speechRecognition
     variable will be available in your project. Read more about the plugin in its
-    official Github repository here. The plugin itself has the following requirements:
+    official Github repository here.
+    
+    https://ourcodeworld.com/articles/read/401/how-to-use-the-speech-recognition-api-in-cordova
+    
+    The plugin itself has the following requirements:
 
     cordova-android v5.0.0
     Android API level 14

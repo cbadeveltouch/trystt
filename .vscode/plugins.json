@@ -1,1 +1,1 @@
-{"plugins":["cordova-plugin-whitelist","cordova-plugin-speechrecognition"]}
+{"plugins":["cordova-plugin-whitelist","cordova-plugin-speechrecognition","cordova-plugin-dialogs"]}
