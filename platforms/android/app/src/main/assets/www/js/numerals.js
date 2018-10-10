@@ -19,7 +19,7 @@ initKeypadNumerals = () => {
                 /* $('.numeral:nth-child(2)').html($('.numeral:nth-child(2)').html().substring(0, 1)); */
                 childSecond.innerHTML = childSecond.innerHTML.substring(0,1)
                 /* $('.numeral:nth-child(2)').append(','); */
-                childSecond.innerHTML = childSecond.innerHTML + ','
+                childSecond.innerHTML = childSecond.innerHTML + '.'
                 /* $('.numeral:nth-child(3)').html($('.numeral:nth-child(3)').html().substring(0, 1)); */
                 childThird.innerHTML = childThird.innerHTML.substring(0,1)
             } else if (length == 6) {
@@ -28,7 +28,7 @@ initKeypadNumerals = () => {
                 /* $('.numeral:nth-child(3)').html($('.numeral:nth-child(3)').html().substring(0, 1)); */
                 childThird.innerHTML = childThird.innerHTML.substring(0,1)
                 /* $('.numeral:nth-child(3)').append(','); */
-                childThird.innerHTML = childThird.innerHTML + ','
+                childThird.innerHTML = childThird.innerHTML + '.'
             }
         } else if (length == 0) {
             /* val.append('<span class="numeral">0</span>'); */
@@ -199,9 +199,9 @@ initKeypadNumerals = () => {
                 lastNumeralsElement_hasCls_decimals = lastNumeralsElement.classList.contains('decimals')
 
             if (numeralLength < 6) {
-                if ((numeralLength == 1) && (content == '0' || content == '.')) {
+                if ((numeralLength == 1) && (content == '0' || content == ',')) {
                     jiggle()
-                } else if ((numeralLength == 1) && (content !== '0' || content !== '.')) {
+                } else if ((numeralLength == 1) && (content !== '0' || content !== ',')) {
                     /* $('#numerals').find('span').addClass('hide'); */
                     /* [].forEach.call( document.getElementById('numerals').getElementsByTagName('span'), numspn => numspn.style.display = 'none' ); */
                     [].forEach.call( document.getElementById('numerals').getElementsByTagName('span'), numspn => numspn.hidden = true );
@@ -214,7 +214,7 @@ initKeypadNumerals = () => {
                         /* document.getElementsByClassName('hide').forEach( hideEl => hideEl.style.display = 'none') */
                         add()
                     }, 150)
-                } else if (content == '.') {
+                } else if (content == ',') {
                     decimal()
                 } else if (lastNumeralsElement_hasCls_decimals) {
                     decimalAdd()
@@ -222,7 +222,7 @@ initKeypadNumerals = () => {
                     add()
                     resize()
                 }
-            } else if (numeralLength == 6 && content == '.') {
+            } else if (numeralLength == 6 && content == ',') {
                 decimal()
             } else if ((numeralLength == 7 || numeralLength == 6) && lastNumeralsElement_hasCls_decimals) {
                 decimalAdd()
@@ -245,55 +245,83 @@ initKeypadNumerals = () => {
          //corpo funzione spostato
     }); */
 
-/*     $('#back').click(function(){
-    if($('.numeral').length == 1){
-    jiggle();
-    } else if ($('.numeral').length == 2) {
-    $('.numeral').last().removeClass('displayed');
-    setTimeout(
-    function() 
-    {
-    $('.numeral').last().remove();
-    $('.numeral').first().show().removeClass('hide');
-    }, 150);
-    } else if($('.numeral').last().hasClass('decimals')){
-    if($('.decplayed').length == 0){
-    $('.numeral').last().removeClass('displayed');
-    setTimeout(
-    function() 
-    {
-    $('.numeral').last().remove();
-    resize();
-    }, 150);
-    }
-    if($('.decplayed').length == 1){
-    $('.decplayed').removeClass('smalldisplayed');
-    setTimeout(
-    function() 
-    {
-    $('.decplayed').first().remove();
-    $('.decimal').first().show().removeClass('smallhide');
-    }, 100);
-    } else if($('.decplayed').length == 2){
-    $('.decplayed').last().removeClass('smalldisplayed');
-    setTimeout(
-    function() 
-    {
-    $('.decplayed').last().remove();
-    $('.decimal').last().show().removeClass('smallhide');
-    }, 100);
-    }
-    } else {
-    $('.numeral').last().removeClass('displayed');
-    setTimeout(
-    function() 
-    {
-    $('.numeral').last().remove();
-    resize();
-    }, 150);
+
+    document.getElementById('back-keypad-cmp').onclick = eventClick => {
+
+        eventClick.stopPropagation()
+
+        let numeralsElements = document.getElementsByClassName('numeral'),
+            lastNumeralsElement = numeralsElements[numeralsElements.length -1]
+        /* lastNumeralsElement.classList.add('displayed') */
+
+        if(numeralsElements.length == 1){
+            jiggle()
+        } else if (numeralsElements.length == 2) {
+            /* $('.numeral').last().removeClass('displayed'); */
+            lastNumeralsElement.classList.remove('displayed')
+            setTimeout( () => {
+                /* $('.numeral').last().remove(); */
+                lastNumeralsElement.remove()
+                /* $('.numeral').first().show().removeClass('hide'); */
+                numeralsElements[0].hidden = false
+                numeralsElements[0].classList.remove('hide')
+            }, 150)
+        /* } else if($('.numeral').last().hasClass('decimals')) { */
+        } else if(lastNumeralsElement.classList.contains('decimals')) {
+            let decPlayedElements = document.getElementsByClassName('decplayed')
+
+            if(decPlayedElements.length == 0){
+                /* $('.numeral').last().removeClass('displayed'); */
+                lastNumeralsElement.classList.remove('displayed')
+                setTimeout( () => {
+                    /* $('.numeral').last().remove(); */
+                    lastNumeralsElement.remove()
+                    resize()
+                }, 150)
+            }
+
+            if (decPlayedElements.length == 1) {
+                /* $('.decplayed').removeClass('smalldisplayed'); */
+                [].forEach.call( decPlayedElements, dpe => dpe.classList.remove('smalldisplayed'))
+
+                setTimeout( () => {
+                    /* $('.decplayed').first().remove(); */
+                    decPlayedElements[0].remove()
+                    /* $('.decimal').first().show().removeClass('smallhide'); */
+                    let decElements = document.getElementsByClassName('decimal')
+                    decElements[0].hidden = false
+                    decElements[0].classList.remove('smallhide')
+                }, 100)
+
+            } else if (decPlayedElements.length == 2) {
+                /* $('.decplayed').last().removeClass('smalldisplayed'); */
+                let lastDecimalPlayed = decPlayedElements[decPlayedElements.length -1]
+                lastDecimalPlayed.classList.remove('smalldisplayed')
+
+                setTimeout( () => {
+                    /* $('.decplayed').last().remove(); */
+                    lastDecimalPlayed.remove()
+                    /* $('.decimal').last().show().removeClass('smallhide'); */
+                    let decimalElements = document.getElementsByClassName('decimal'),
+                        lastDecimalElements = decimalElements[decimalElements.length -1]
+                    lastDecimalElements.hidden = false
+                    lastDecimalElements.classList.remove('smallhide')
+                }, 100)
+            }
+
+        } else {
+            /* $('.numeral').last().removeClass('displayed'); */
+            lastNumeralsElement.classList.remove('displayed')
+            setTimeout( () => {
+                /* $('.numeral').last().remove(); */
+                lastNumeralsElement.remove()
+                resize()
+            }, 150)
+        }
     }
 
-    }); */
+
+    /* $('#back').click(function(){}); */
 
     resize()
 };

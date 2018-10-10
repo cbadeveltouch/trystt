@@ -144,10 +144,10 @@ h1 {
 }
 
 .button-kp {
-    border-bottom: 3px solid #0D47A1;
+    border-bottom: 3px solid #00E676;
     /* border-top: 1px solid #b2cde4; */
     border-radius: 18px;
-    color: #0D47A1;
+    color: #00E676;
     cursor: pointer;
     display: inline-block;
     font-size: 26px;
@@ -161,7 +161,7 @@ h1 {
 }
 
 .button-kp:active {
-    background-color: #1565C0;
+    background-color: #00C853;
     color: #FFFFFF;
 }
 
@@ -172,7 +172,7 @@ h1 {
 }
 
 .button-kp-del:active {
-    background: #1565C0 url(../img/delete-white.svg) no-repeat center center;
+    background: #00C853 url(../img/delete-white.svg) no-repeat center center;
     background-size: 40% auto;
     color: transparent;
 }
@@ -197,7 +197,8 @@ h1 {
 	position: relative;
 	opacity: 0;
 	top: -20px;
-	transition: top 100ms linear, opacity 150ms linear;
+    transition: top 100ms linear, opacity 150ms linear;
+    color: #0d47a1 !important;
 }
 
 #keypad-cmp #display #numerals .displayed {
@@ -215,7 +216,7 @@ h1 {
 	font-size: .45em;
 	opacity: 0;
 	top: -1em;
-	color: rgba(255, 255, 255, 0.4);
+	color: rgba(13,71,161, 0.4);
 	padding: 0 0 0 1px;
 	transition: top 100ms linear, opacity 150ms linear;
 }
@@ -224,7 +225,7 @@ h1 {
 	position: relative;
 	font-size: .45em;
 	top: -.8em;
-	color: rgba(255, 255, 255, 0.4);
+	color: rgba(13,71,161, 0.4);
 	padding: 0 0 0 1px;
 	transition: top 100ms linear, opacity 150ms linear;
 }
@@ -233,7 +234,7 @@ h1 {
 	position: relative;
 	font-size: .45em;
 	top: -.8em;
-	color: #ffffff;
+	color: #0d47a1;
 	opacity: 1;
 	padding: 0 0 0 1px;
 }
