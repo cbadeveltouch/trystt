@@ -8,16 +8,27 @@ initKeypadNumerals = () => {
             /* val.css('font-size', (1 - (length / 10)) + 'em') */
             val.style['font-size'] = (1 - (length / 10)) + 'em'
             
+            let numeralsElements = document.getElementsByClassName('numeral'),
+                childSecond = numeralsElements[1],
+                childThird = numeralsElements[2]
+
             if ( length < 5) {
-                $('.numeral:nth-child(2)').html($('.numeral:nth-child(2)').html().substring(0, 1));
+                /* $('.numeral:nth-child(2)').html($('.numeral:nth-child(2)').html().substring(0, 1)); */
+                childSecond.innerHTML = childSecond.innerHTML.substring(0,1)
             } else if (length == 5) {
-                $('.numeral:nth-child(2)').html($('.numeral:nth-child(2)').html().substring(0, 1));
-                $('.numeral:nth-child(2)').append(',');
-                $('.numeral:nth-child(3)').html($('.numeral:nth-child(3)').html().substring(0, 1));
+                /* $('.numeral:nth-child(2)').html($('.numeral:nth-child(2)').html().substring(0, 1)); */
+                childSecond.innerHTML = childSecond.innerHTML.substring(0,1)
+                /* $('.numeral:nth-child(2)').append(','); */
+                childSecond.innerHTML = childSecond.innerHTML + ','
+                /* $('.numeral:nth-child(3)').html($('.numeral:nth-child(3)').html().substring(0, 1)); */
+                childThird.innerHTML = childThird.innerHTML.substring(0,1)
             } else if (length == 6) {
-                $('.numeral:nth-child(2)').html($('.numeral:nth-child(2)').html().substring(0, 1));
-                $('.numeral:nth-child(3)').html($('.numeral:nth-child(3)').html().substring(0, 1));
-                $('.numeral:nth-child(3)').append(',');
+                /* $('.numeral:nth-child(2)').html($('.numeral:nth-child(2)').html().substring(0, 1)); */
+                childSecond.innerHTML = childSecond.innerHTML.substring(0,1)
+                /* $('.numeral:nth-child(3)').html($('.numeral:nth-child(3)').html().substring(0, 1)); */
+                childThird.innerHTML = childThird.innerHTML.substring(0,1)
+                /* $('.numeral:nth-child(3)').append(','); */
+                childThird.innerHTML = childThird.innerHTML + ','
             }
         } else if (length == 0) {
             /* val.append('<span class="numeral">0</span>'); */
@@ -56,10 +67,11 @@ initKeypadNumerals = () => {
 
     [].forEach.call( document.getElementsByClassName('buttons-kp-key'), btn => {
 
-        btn.onclick = () => {
+        btn.onclick = eventClick => {
             /* var content = $(this).find('span').html(); */
-            let content = document.getElementById('keypad-cmp').getElementsByTagName('span')[0].innerHTML
-            //???????? TODO: capire se funziona bene
+            eventClick.stopPropagation()
+            /* let content = btnEl.currentTarget.innerHTML */
+            let content = btn.innerHTML
 
             decimal = () => {
                 /* if ($('.numeral').last().hasClass('decimals')) { */
@@ -124,7 +136,8 @@ initKeypadNumerals = () => {
 
                     setTimeout( () => {
                         /* $('.smallhide').hide(); */
-                        [].forEach.call( document.getElementsByClassName('smallhide'), sh => sh.style.display = 'none' );
+                        /* [].forEach.call( document.getElementsByClassName('smallhide'), sh => sh.style.display = 'none' ); */
+                        [].forEach.call( document.getElementsByClassName('smallhide'), sh => sh.hidden = true );
                         /* $('.decimals').prepend('<span class="decplayed">' + content + '</span>'); */
                         [].forEach.call( document.getElementsByClassName('decimals'), dec => {
                             let node = document.createElement('span')
@@ -157,7 +170,8 @@ initKeypadNumerals = () => {
 
                     setTimeout( () => {
                         /* $('.smallhide').hide(); */
-                        [].forEach.call( document.getElementsByClassName('smallhide'), sh => sh.style.display = 'none' );
+                        /* [].forEach.call( document.getElementsByClassName('smallhide'), sh => sh.style.display = 'none' ); */
+                        [].forEach.call( document.getElementsByClassName('smallhide'), sh => sh.hidden = true );
                         /* $('.decimals').append('<span class="decplayed">' + content + '</span>'); */
                         [].forEach.call( document.getElementsByClassName('decimals'), dccmps => {
                             let node = document.createElement('span')
@@ -189,12 +203,14 @@ initKeypadNumerals = () => {
                     jiggle()
                 } else if ((numeralLength == 1) && (content !== '0' || content !== '.')) {
                     /* $('#numerals').find('span').addClass('hide'); */
-                    [].forEach.call( document.getElementById('numerals').getElementsByTagName('span'), numspn => numspn.style.display = 'none' );
+                    /* [].forEach.call( document.getElementById('numerals').getElementsByTagName('span'), numspn => numspn.style.display = 'none' ); */
+                    [].forEach.call( document.getElementById('numerals').getElementsByTagName('span'), numspn => numspn.hidden = true );
                     /* document.getElementById('numerals').getElementsByTagName('span').forEach( numspn => numspn.style.display = 'none') */
 
                     setTimeout( () => {
                         /* $('.hide').hide(); */
-                        [].forEach.call( document.getElementsByClassName('hide'), hideEl => hideEl.style.display = 'none' );
+                        /* [].forEach.call( document.getElementsByClassName('hide'), hideEl => hideEl.style.display = 'none' ); */
+                        [].forEach.call( document.getElementsByClassName('hide'), hideEl => hideEl.hidden = true );
                         /* document.getElementsByClassName('hide').forEach( hideEl => hideEl.style.display = 'none') */
                         add()
                     }, 150)
