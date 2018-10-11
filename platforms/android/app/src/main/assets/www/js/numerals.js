@@ -68,174 +68,181 @@ initKeypadNumerals = () => {
     [].forEach.call( document.getElementsByClassName('buttons-kp-key'), btn => {
 
         btn.onclick = eventClick => {
-            /* var content = $(this).find('span').html(); */
-            eventClick.stopPropagation()
-            /* let content = btnEl.currentTarget.innerHTML */
-            let content = btn.innerHTML
 
-            decimal = () => {
-                /* if ($('.numeral').last().hasClass('decimals')) { */
-                let numeralsElements = [],
-                    lastNumeralsElement = {},
-                    lastNumeralsElement_hasCls_decimals = false
+            if (eventClick.target.id && eventClick.target.id === 'keypad') {
+                eventClick.stopImmediatePropagation()
+            } else {
 
-                numeralsElements = document.getElementsByClassName('numeral')
-                lastNumeralsElement = numeralsElements[numeralsElements.length -1]
-                lastNumeralsElement_hasCls_decimals = lastNumeralsElement.classList.contains('decimals')
+                /* var content = $(this).find('span').html(); */
+                eventClick.stopPropagation()
+                /* let content = btnEl.currentTarget.innerHTML */
+                let content = btn.innerHTML
 
-                if (lastNumeralsElement_hasCls_decimals) {
-                    jiggle()
-                } else {
-                    //
-                    /* val.append('<span class="numeral decimals"><span class="decimal">0</span><span class="decimal">0</span></span>'); */
-                    let node1 = document.createElement('span')
-                    node1.classList.add('numeral')
-                    node1.classList.add('decimals')
-                    val.appendChild(node1)
+                decimal = () => {
+                    /* if ($('.numeral').last().hasClass('decimals')) { */
+                    let numeralsElements = [],
+                        lastNumeralsElement = {},
+                        lastNumeralsElement_hasCls_decimals = false
 
-                    let node2 = document.createElement('span')
-                    node2.classList.add('decimal')
-                    node2.innerHTML = '0'
-                    node1.appendChild(node2)
-
-                    let node3 = document.createElement('span')
-                    node3.classList.add('decimal')
-                    node3.innerHTML = '0'
-                    node1.appendChild(node3)
-                    
-                    reflow()
-
-                    /* $('.numeral').last().addClass('displayed'); */
                     numeralsElements = document.getElementsByClassName('numeral')
                     lastNumeralsElement = numeralsElements[numeralsElements.length -1]
-                    lastNumeralsElement.classList.add('displayed')
-                }
-            }
+                    lastNumeralsElement_hasCls_decimals = lastNumeralsElement.classList.contains('decimals')
 
-            add = () => {
-                /* val.append('<span class="numeral">' + content + '</span>'); */
-                let node = document.createElement('span')
-                node.classList.add('numeral')
-                node.innerHTML = content
-                val.appendChild(node)
-                /* node.appendChild(content) */
+                    if (lastNumeralsElement_hasCls_decimals) {
+                        jiggle()
+                    } else {
+                        //
+                        /* val.append('<span class="numeral decimals"><span class="decimal">0</span><span class="decimal">0</span></span>'); */
+                        let node1 = document.createElement('span')
+                        node1.classList.add('numeral')
+                        node1.classList.add('decimals')
+                        val.appendChild(node1)
 
-                reflow()
-                /* $('.numeral').last().addClass('displayed'); */
-                let numeralsElements = document.getElementsByClassName('numeral'),
-                    lastNumeralsElement = numeralsElements[numeralsElements.length -1]
-                lastNumeralsElement.classList.add('displayed')
-            }
+                        let node2 = document.createElement('span')
+                        node2.classList.add('decimal')
+                        node2.innerHTML = '0'
+                        node1.appendChild(node2)
 
-            decimalAdd = () => {
-                /* if ($('.decplayed').length == 0) { */
-                if (document.getElementsByClassName('decplayed').length == 0) {
-                    /* $('.decimal').first().addClass('smallhide'); */
-                    let firstDecimalCmp = document.getElementsByClassName('decimal')[0]
-                    firstDecimalCmp.classList.add('smallhide')
-
-                    setTimeout( () => {
-                        /* $('.smallhide').hide(); */
-                        /* [].forEach.call( document.getElementsByClassName('smallhide'), sh => sh.style.display = 'none' ); */
-                        [].forEach.call( document.getElementsByClassName('smallhide'), sh => sh.hidden = true );
-                        /* $('.decimals').prepend('<span class="decplayed">' + content + '</span>'); */
-                        [].forEach.call( document.getElementsByClassName('decimals'), dec => {
-                            let node = document.createElement('span')
-                            node.classList.add('decplayed')
-                            /* node.appendChild(content) */
-                            node.innerHTML = content
-                            dec.insertBefore(node, dec.childNodes[0])
-                        });
-                        /* document.getElementsByClassName('decimals').forEach( dec => {
-                            let node = document.createElement('span')
-                            node.classList.add('decplayed')
-                            node.innerHTML = content
-                            dec.insertBefore(node, dec.childNodes[0])
-                        }) */
-                        //?????????????? TODO: dubbio su prepend
+                        let node3 = document.createElement('span')
+                        node3.classList.add('decimal')
+                        node3.innerHTML = '0'
+                        node1.appendChild(node3)
                         
                         reflow()
 
-                        /* $('.decplayed').first().addClass('smalldisplayed'); */
-                        let firstDecplayed = document.getElementsByClassName('decplayed')[0]
-                        firstDecplayed.classList.add('smalldisplayed')
-
-                    }, 100)
-                /* } else if ($('.decplayed').length == 1) { */
-                } else if (document.getElementsByClassName('decplayed').length == 1) {
-                    /* $('.decimal').last().addClass('smallhide'); */
-                    let decimalCmps = document.getElementsByClassName('decimal'),
-                        lastDecimalCmps = decimalCmps[decimalCmps.length -1]
-                    lastDecimalCmps.classList.add('smallhide')
-
-                    setTimeout( () => {
-                        /* $('.smallhide').hide(); */
-                        /* [].forEach.call( document.getElementsByClassName('smallhide'), sh => sh.style.display = 'none' ); */
-                        [].forEach.call( document.getElementsByClassName('smallhide'), sh => sh.hidden = true );
-                        /* $('.decimals').append('<span class="decplayed">' + content + '</span>'); */
-                        [].forEach.call( document.getElementsByClassName('decimals'), dccmps => {
-                            let node = document.createElement('span')
-                            node.classList.add('decplayed')
-                            node.innerHTML = content
-                            dccmps.appendChild(node)
-                        });
-
-                        reflow()
-
-                        /* $('.decplayed').last().addClass('smalldisplayed'); */
-                        let decimalPlayed = document.getElementsByClassName('decplayed'),
-                            lastDecimalPlayed = decimalPlayed[decimalPlayed.length -1]
-                        lastDecimalPlayed.classList.add('smalldisplayed')
-
-                    }, 100)
-                } else {
-                    jiggle()
+                        /* $('.numeral').last().addClass('displayed'); */
+                        numeralsElements = document.getElementsByClassName('numeral')
+                        lastNumeralsElement = numeralsElements[numeralsElements.length -1]
+                        lastNumeralsElement.classList.add('displayed')
+                    }
                 }
-            }
 
-            let numeralsElements = document.getElementsByClassName('numeral'),
-                numeralLength = numeralsElements.length,
-                lastNumeralsElement = numeralsElements[numeralsElements.length -1],
-                lastNumeralsElement_hasCls_decimals = lastNumeralsElement.classList.contains('decimals')
+                add = () => {
+                    /* val.append('<span class="numeral">' + content + '</span>'); */
+                    let node = document.createElement('span')
+                    node.classList.add('numeral')
+                    node.innerHTML = content
+                    val.appendChild(node)
+                    /* node.appendChild(content) */
 
-            if (numeralLength < 6) {
-                if ((numeralLength == 1) && (content == '0' || content == ',')) {
-                    jiggle()
-                } else if ((numeralLength == 1) && (content !== '0' || content !== ',')) {
-                    /* $('#numerals').find('span').addClass('hide'); */
-                    /* [].forEach.call( document.getElementById('numerals').getElementsByTagName('span'), numspn => numspn.style.display = 'none' ); */
-                    [].forEach.call( document.getElementById('numerals').getElementsByTagName('span'), numspn => numspn.hidden = true );
-                    /* document.getElementById('numerals').getElementsByTagName('span').forEach( numspn => numspn.style.display = 'none') */
+                    reflow()
+                    /* $('.numeral').last().addClass('displayed'); */
+                    let numeralsElements = document.getElementsByClassName('numeral'),
+                        lastNumeralsElement = numeralsElements[numeralsElements.length -1]
+                    lastNumeralsElement.classList.add('displayed')
+                }
 
-                    setTimeout( () => {
-                        /* $('.hide').hide(); */
-                        /* [].forEach.call( document.getElementsByClassName('hide'), hideEl => hideEl.style.display = 'none' ); */
-                        [].forEach.call( document.getElementsByClassName('hide'), hideEl => hideEl.hidden = true );
-                        /* document.getElementsByClassName('hide').forEach( hideEl => hideEl.style.display = 'none') */
+                decimalAdd = () => {
+                    /* if ($('.decplayed').length == 0) { */
+                    if (document.getElementsByClassName('decplayed').length == 0) {
+                        /* $('.decimal').first().addClass('smallhide'); */
+                        let firstDecimalCmp = document.getElementsByClassName('decimal')[0]
+                        firstDecimalCmp.classList.add('smallhide')
+
+                        setTimeout( () => {
+                            /* $('.smallhide').hide(); */
+                            /* [].forEach.call( document.getElementsByClassName('smallhide'), sh => sh.style.display = 'none' ); */
+                            [].forEach.call( document.getElementsByClassName('smallhide'), sh => sh.hidden = true );
+                            /* $('.decimals').prepend('<span class="decplayed">' + content + '</span>'); */
+                            [].forEach.call( document.getElementsByClassName('decimals'), dec => {
+                                let node = document.createElement('span')
+                                node.classList.add('decplayed')
+                                /* node.appendChild(content) */
+                                node.innerHTML = content
+                                dec.insertBefore(node, dec.childNodes[0])
+                            });
+                            /* document.getElementsByClassName('decimals').forEach( dec => {
+                                let node = document.createElement('span')
+                                node.classList.add('decplayed')
+                                node.innerHTML = content
+                                dec.insertBefore(node, dec.childNodes[0])
+                            }) */
+                            //?????????????? TODO: dubbio su prepend
+                            
+                            reflow()
+
+                            /* $('.decplayed').first().addClass('smalldisplayed'); */
+                            let firstDecplayed = document.getElementsByClassName('decplayed')[0]
+                            firstDecplayed.classList.add('smalldisplayed')
+
+                        }, 100)
+                    /* } else if ($('.decplayed').length == 1) { */
+                    } else if (document.getElementsByClassName('decplayed').length == 1) {
+                        /* $('.decimal').last().addClass('smallhide'); */
+                        let decimalCmps = document.getElementsByClassName('decimal'),
+                            lastDecimalCmps = decimalCmps[decimalCmps.length -1]
+                        lastDecimalCmps.classList.add('smallhide')
+
+                        setTimeout( () => {
+                            /* $('.smallhide').hide(); */
+                            /* [].forEach.call( document.getElementsByClassName('smallhide'), sh => sh.style.display = 'none' ); */
+                            [].forEach.call( document.getElementsByClassName('smallhide'), sh => sh.hidden = true );
+                            /* $('.decimals').append('<span class="decplayed">' + content + '</span>'); */
+                            [].forEach.call( document.getElementsByClassName('decimals'), dccmps => {
+                                let node = document.createElement('span')
+                                node.classList.add('decplayed')
+                                node.innerHTML = content
+                                dccmps.appendChild(node)
+                            });
+
+                            reflow()
+
+                            /* $('.decplayed').last().addClass('smalldisplayed'); */
+                            let decimalPlayed = document.getElementsByClassName('decplayed'),
+                                lastDecimalPlayed = decimalPlayed[decimalPlayed.length -1]
+                            lastDecimalPlayed.classList.add('smalldisplayed')
+
+                        }, 100)
+                    } else {
+                        jiggle()
+                    }
+                }
+
+                let numeralsElements = document.getElementsByClassName('numeral'),
+                    numeralLength = numeralsElements.length,
+                    lastNumeralsElement = numeralsElements[numeralsElements.length -1],
+                    lastNumeralsElement_hasCls_decimals = lastNumeralsElement.classList.contains('decimals')
+
+                if (numeralLength < 6) {
+                    if ((numeralLength == 1) && (content == '0' || content == ',')) {
+                        jiggle()
+                    } else if ((numeralLength == 1) && (content !== '0' || content !== ',')) {
+                        /* $('#numerals').find('span').addClass('hide'); */
+                        /* [].forEach.call( document.getElementById('numerals').getElementsByTagName('span'), numspn => numspn.style.display = 'none' ); */
+                        [].forEach.call( document.getElementById('numerals').getElementsByTagName('span'), numspn => numspn.hidden = true );
+                        /* document.getElementById('numerals').getElementsByTagName('span').forEach( numspn => numspn.style.display = 'none') */
+
+                        setTimeout( () => {
+                            /* $('.hide').hide(); */
+                            /* [].forEach.call( document.getElementsByClassName('hide'), hideEl => hideEl.style.display = 'none' ); */
+                            [].forEach.call( document.getElementsByClassName('hide'), hideEl => hideEl.hidden = true );
+                            /* document.getElementsByClassName('hide').forEach( hideEl => hideEl.style.display = 'none') */
+                            add()
+                        }, 150)
+                    } else if (content == ',') {
+                        decimal()
+                    } else if (lastNumeralsElement_hasCls_decimals) {
+                        decimalAdd()
+                    } else {
                         add()
-                    }, 150)
-                } else if (content == ',') {
+                        resize()
+                    }
+                } else if (numeralLength == 6 && content == ',') {
                     decimal()
-                } else if (lastNumeralsElement_hasCls_decimals) {
+                } else if ((numeralLength == 7 || numeralLength == 6) && lastNumeralsElement_hasCls_decimals) {
                     decimalAdd()
+                } else if (numeralLength == 0) {
+                    /* val.append('<span class="numeral">0</span>'); */
+                    let node = document.createElement('span')
+                    node.classList.add('numeral')
+                    node.innerHTML = '0'
+                    val.appendChild(node)
+                    /* $('.numeral').last().addClass('displayed'); */
+                    lastNumeralsElement.classList.add('displayed')
                 } else {
-                    add()
-                    resize()
+                    jiggle()
                 }
-            } else if (numeralLength == 6 && content == ',') {
-                decimal()
-            } else if ((numeralLength == 7 || numeralLength == 6) && lastNumeralsElement_hasCls_decimals) {
-                decimalAdd()
-            } else if (numeralLength == 0) {
-                /* val.append('<span class="numeral">0</span>'); */
-                let node = document.createElement('span')
-                node.classList.add('numeral')
-                node.innerHTML = '0'
-                val.appendChild(node)
-                /* $('.numeral').last().addClass('displayed'); */
-                lastNumeralsElement.classList.add('displayed')
-            } else {
-                jiggle()
+
             }
         }
 
@@ -248,29 +255,72 @@ initKeypadNumerals = () => {
 
     document.getElementById('back-keypad-cmp').onclick = eventClick => {
 
-        eventClick.stopPropagation()
+        if (eventClick.target.id && eventClick.target.id === 'keypad') {
+            eventClick.stopImmediatePropagation()
+        } else {
 
-        let numeralsElements = document.getElementsByClassName('numeral'),
-            lastNumeralsElement = numeralsElements[numeralsElements.length -1]
-        /* lastNumeralsElement.classList.add('displayed') */
+            eventClick.stopPropagation()
 
-        if(numeralsElements.length == 1){
-            jiggle()
-        } else if (numeralsElements.length == 2) {
-            /* $('.numeral').last().removeClass('displayed'); */
-            lastNumeralsElement.classList.remove('displayed')
-            setTimeout( () => {
-                /* $('.numeral').last().remove(); */
-                lastNumeralsElement.remove()
-                /* $('.numeral').first().show().removeClass('hide'); */
-                numeralsElements[0].hidden = false
-                numeralsElements[0].classList.remove('hide')
-            }, 150)
-        /* } else if($('.numeral').last().hasClass('decimals')) { */
-        } else if(lastNumeralsElement.classList.contains('decimals')) {
-            let decPlayedElements = document.getElementsByClassName('decplayed')
+            let numeralsElements = document.getElementsByClassName('numeral'),
+                lastNumeralsElement = numeralsElements[numeralsElements.length -1]
+            /* lastNumeralsElement.classList.add('displayed') */
 
-            if(decPlayedElements.length == 0){
+            if(numeralsElements.length == 1){
+                jiggle()
+            } else if (numeralsElements.length == 2) {
+                /* $('.numeral').last().removeClass('displayed'); */
+                lastNumeralsElement.classList.remove('displayed')
+                setTimeout( () => {
+                    /* $('.numeral').last().remove(); */
+                    lastNumeralsElement.remove()
+                    /* $('.numeral').first().show().removeClass('hide'); */
+                    numeralsElements[0].hidden = false
+                    numeralsElements[0].classList.remove('hide')
+                }, 150)
+            /* } else if($('.numeral').last().hasClass('decimals')) { */
+            } else if(lastNumeralsElement.classList.contains('decimals')) {
+                let decPlayedElements = document.getElementsByClassName('decplayed')
+
+                if(decPlayedElements.length == 0){
+                    /* $('.numeral').last().removeClass('displayed'); */
+                    lastNumeralsElement.classList.remove('displayed')
+                    setTimeout( () => {
+                        /* $('.numeral').last().remove(); */
+                        lastNumeralsElement.remove()
+                        resize()
+                    }, 150)
+                }
+
+                if (decPlayedElements.length == 1) {
+                    /* $('.decplayed').removeClass('smalldisplayed'); */
+                    [].forEach.call( decPlayedElements, dpe => dpe.classList.remove('smalldisplayed'))
+
+                    setTimeout( () => {
+                        /* $('.decplayed').first().remove(); */
+                        decPlayedElements[0].remove()
+                        /* $('.decimal').first().show().removeClass('smallhide'); */
+                        let decElements = document.getElementsByClassName('decimal')
+                        decElements[0].hidden = false
+                        decElements[0].classList.remove('smallhide')
+                    }, 100)
+
+                } else if (decPlayedElements.length == 2) {
+                    /* $('.decplayed').last().removeClass('smalldisplayed'); */
+                    let lastDecimalPlayed = decPlayedElements[decPlayedElements.length -1]
+                    lastDecimalPlayed.classList.remove('smalldisplayed')
+
+                    setTimeout( () => {
+                        /* $('.decplayed').last().remove(); */
+                        lastDecimalPlayed.remove()
+                        /* $('.decimal').last().show().removeClass('smallhide'); */
+                        let decimalElements = document.getElementsByClassName('decimal'),
+                            lastDecimalElements = decimalElements[decimalElements.length -1]
+                        lastDecimalElements.hidden = false
+                        lastDecimalElements.classList.remove('smallhide')
+                    }, 100)
+                }
+
+            } else {
                 /* $('.numeral').last().removeClass('displayed'); */
                 lastNumeralsElement.classList.remove('displayed')
                 setTimeout( () => {
@@ -280,43 +330,6 @@ initKeypadNumerals = () => {
                 }, 150)
             }
 
-            if (decPlayedElements.length == 1) {
-                /* $('.decplayed').removeClass('smalldisplayed'); */
-                [].forEach.call( decPlayedElements, dpe => dpe.classList.remove('smalldisplayed'))
-
-                setTimeout( () => {
-                    /* $('.decplayed').first().remove(); */
-                    decPlayedElements[0].remove()
-                    /* $('.decimal').first().show().removeClass('smallhide'); */
-                    let decElements = document.getElementsByClassName('decimal')
-                    decElements[0].hidden = false
-                    decElements[0].classList.remove('smallhide')
-                }, 100)
-
-            } else if (decPlayedElements.length == 2) {
-                /* $('.decplayed').last().removeClass('smalldisplayed'); */
-                let lastDecimalPlayed = decPlayedElements[decPlayedElements.length -1]
-                lastDecimalPlayed.classList.remove('smalldisplayed')
-
-                setTimeout( () => {
-                    /* $('.decplayed').last().remove(); */
-                    lastDecimalPlayed.remove()
-                    /* $('.decimal').last().show().removeClass('smallhide'); */
-                    let decimalElements = document.getElementsByClassName('decimal'),
-                        lastDecimalElements = decimalElements[decimalElements.length -1]
-                    lastDecimalElements.hidden = false
-                    lastDecimalElements.classList.remove('smallhide')
-                }, 100)
-            }
-
-        } else {
-            /* $('.numeral').last().removeClass('displayed'); */
-            lastNumeralsElement.classList.remove('displayed')
-            setTimeout( () => {
-                /* $('.numeral').last().remove(); */
-                lastNumeralsElement.remove()
-                resize()
-            }, 150)
         }
     }
 

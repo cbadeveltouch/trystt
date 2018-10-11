@@ -167,6 +167,25 @@ var app = {
 
         initKeypadNumerals()
 
+
+        /**
+         * configuro slidebar
+         */
+        let pipsSlider = document.getElementById('keypad-cmp-slidercontainer');
+
+        noUiSlider.create(pipsSlider, {
+            range: {
+                min: 0,
+                max: 200
+            },
+            start: [30],
+            pips: {mode: 'count', values: 5},
+            orientation: 'vertical',
+            behaviour: 'tap',
+            connect: [true, false],
+            direction: 'rtl'
+        })
+
     },
 
     // Update DOM on a Received Event

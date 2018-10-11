@@ -140,28 +140,30 @@ h1 {
     flex-wrap: wrap;
     justify-content: flex-start;
     margin: 0 auto;
-    width: 270px;
+    width: 180px;
     border: 1px solid #5fa2dd;
     border-top: none;
     padding: 0px 15px 20px 15px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
+    /* border-bottom-right-radius: 15px; */
+    border-left: none;
+    border-bottom: none;
+    /* border-bottom-left-radius: 15px; */
     /* font-family: 'Courier New', Courier, monospace; */
 }
 
 .button-kp {
-    border-bottom: 2px solid #5fa2dd;
+    border-bottom: 2px solid slategray;
     /* border-top: 1px solid #b2cde4; */
-    border-radius: 18px;
-    color: #5fa2dd;
+    border-radius: 12px;
+    color: slategray;
     cursor: pointer;
     display: inline-block;
-    font-size: 26px;
-    height: 80px;
-    line-height: 80px;
-    margin: 5px;
+    font-size: 18px;
+    height: 44px;
+    line-height: 44px;
+    margin: 8px;
     text-align: center;
-    width: 80px;
+    width: 44px;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
@@ -183,16 +185,20 @@ h1 {
     color: transparent;
 }
 
-#keypad-cmp #display {
-	text-align: center;
-	font-size: 4rem;
-	line-height: 4rem;
-	border: 1px solid #5fa2dd;
+#keypad-cmp #display-kp {
+    text-align: center;
+    font-size: 4rem;
+    line-height: 4rem;
+    border: 1px solid #5fa2dd;
     border-top-right-radius: 15px;
-    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom: none;
+    /* border-top-left-radius: 15px; */
+    border-left: none;
+    box-shadow: -2px 2px 7px lightgrey;
 }
 
-#keypad-cmp #display #numerals {
+#keypad-cmp #display-kp #numerals {
 	font-weight: regular;
 	position: relative;
 	z-index: 20;
@@ -201,7 +207,7 @@ h1 {
 	display: block;
 }
 
-#keypad-cmp #display #numerals .numeral {
+#keypad-cmp #display-kp #numerals .numeral {
 	position: relative;
 	opacity: 0;
 	top: -20px;
@@ -209,17 +215,17 @@ h1 {
     color: #0d47a1 !important;
 }
 
-#keypad-cmp #display #numerals .displayed {
+#keypad-cmp #display-kp #numerals .displayed {
 	opacity: 1;
 	top: 0px;
 }
 
-#keypad-cmp #display #numerals .hide {
+#keypad-cmp #display-kp #numerals .hide {
 	opacity: 0;
 	top: 25px;
 }
 
-#keypad-cmp #display #numerals .decplayed {
+#keypad-cmp #display-kp #numerals .decplayed {
 	position: relative;
 	font-size: .45em;
 	opacity: 0;
@@ -229,7 +235,7 @@ h1 {
 	transition: top 100ms linear, opacity 150ms linear;
 }
 
-#keypad-cmp #display #numerals .decimal {
+#keypad-cmp #display-kp #numerals .decimal {
 	position: relative;
 	font-size: .45em;
 	top: -.8em;
@@ -238,7 +244,7 @@ h1 {
 	transition: top 100ms linear, opacity 150ms linear;
 }
 
-#keypad-cmp #display #numerals .smalldisplayed {
+#keypad-cmp #display-kp #numerals .smalldisplayed {
 	position: relative;
 	font-size: .45em;
 	top: -.8em;
@@ -247,12 +253,12 @@ h1 {
 	padding: 0 0 0 1px;
 }
 
-#keypad-cmp #display #numerals .smallhide {
+#keypad-cmp #display-kp #numerals .smallhide {
 	opacity: 0;
 	top: -.6em;
 }
 
-/* #keypad-cmp #display #numerals:before {
+/* #keypad-cmp #display-kp #numerals:before {
 	content: '$';
 	position: relative;
 	font-size: .4em;
