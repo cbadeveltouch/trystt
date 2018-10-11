@@ -141,13 +141,19 @@ h1 {
     justify-content: flex-start;
     margin: 0 auto;
     width: 270px;
+    border: 1px solid #5fa2dd;
+    border-top: none;
+    padding: 0px 15px 20px 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    /* font-family: 'Courier New', Courier, monospace; */
 }
 
 .button-kp {
-    border-bottom: 3px solid #00E676;
+    border-bottom: 2px solid #5fa2dd;
     /* border-top: 1px solid #b2cde4; */
     border-radius: 18px;
-    color: #00E676;
+    color: #5fa2dd;
     cursor: pointer;
     display: inline-block;
     font-size: 26px;
@@ -161,7 +167,7 @@ h1 {
 }
 
 .button-kp:active {
-    background-color: #00C853;
+    background-color: #0d47a1;
     color: #FFFFFF;
 }
 
@@ -172,7 +178,7 @@ h1 {
 }
 
 .button-kp-del:active {
-    background: #00C853 url(../img/delete-white.svg) no-repeat center center;
+    background: #0d47a1 url(../img/delete-white.svg) no-repeat center center;
     background-size: 40% auto;
     color: transparent;
 }
@@ -181,7 +187,9 @@ h1 {
 	text-align: center;
 	font-size: 4rem;
 	line-height: 4rem;
-	padding: 0 0 10px 0;
+	border: 1px solid #5fa2dd;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
 }
 
 #keypad-cmp #display #numerals {

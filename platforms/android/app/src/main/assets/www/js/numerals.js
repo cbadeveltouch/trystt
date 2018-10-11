@@ -6,7 +6,7 @@ initKeypadNumerals = () => {
 
         if ( length > 3 ) {
             /* val.css('font-size', (1 - (length / 10)) + 'em') */
-            val.style['font-size'] = (1 - (length / 10)) + 'em'
+            val.style['font-size'] = (50 - length) + 'px'
             
             let numeralsElements = document.getElementsByClassName('numeral'),
                 childSecond = numeralsElements[1],
@@ -42,7 +42,7 @@ initKeypadNumerals = () => {
             allNumeral[allNumeral.length -1].classList.add('displayed')
         } else {
             /* val.css('font-size', '1em'); */
-            val.style['font-size'] = '1em'
+            val.style['font-size'] = '50px'
         }
     }
 
